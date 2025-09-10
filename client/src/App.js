@@ -308,7 +308,7 @@ function App() {
                     )}
                   </button>
                 </div>
-                <div style={{maxHeight: '500px', overflowY: 'auto'}}>
+                <div style={{maxHeight: '500px', overflowY: 'auto', overflowX: 'hidden'}}>
                   {records.length === 0 ? (
                     <div className="text-center text-muted py-4">
                       <i className="fas fa-inbox fa-lg mb-2 d-block opacity-50"></i>
