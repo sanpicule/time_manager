@@ -57,7 +57,7 @@ app.post('/api/submit', async (req, res) => {
     const dayOnly = date.split('-').pop(); // Extract only the day
 
     try {
-        const authClient = await auth.getClient();
+        const authClient = auth.getClient ? await auth.getClient() : auth;
         const sheets = google.sheets({ version: 'v4', auth: authClient });
 
         // Get all values from column A to find '合計'
