@@ -322,6 +322,21 @@ app.get('/api/records', async (req, res) => {
 
 
 
+// Serve static files from React build
+const clientBuildPath = path.join(__dirname, 'client', 'build');
+if (fs.existsSync(clientBuildPath)) {
+    app.use(express.static(clientBuildPath));
+}
+
+// SPA fallback: send index.html for non-API routes (Express 5 compatible)
+app.get(/^\/(?!api(?:\/|$)).*/, (req, res) => {
+    const indexFilePath = path.join(clientBuildPath, 'index.html');
+    if (fs.existsSync(indexFilePath)) {
+        return res.sendFile(indexFilePath);
+    }
+    return res.status(404).send('Build not found. Please run "npm run build" in client/.');
+});
+
 app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
     console.log(`Backend API available at http://localhost:${PORT}/api/submit`);
