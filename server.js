@@ -272,8 +272,8 @@ app.delete('/api/records/:rowIndex', async (req, res) => {
 // API endpoint to fetch records
 app.get('/api/records', async (req, res) => {
     try {
-        // const authClient = await auth.getClient ? await auth.getClient() : auth;
-        const sheets = google.sheets({ version: 'v4', auth });
+        const authClient = await auth.getClient ? await auth.getClient() : auth;
+        const sheets = google.sheets({ version: 'v4', auth: authClient });
 
         const response = await sheets.spreadsheets.values.get({
             spreadsheetId: SPREADSHEET_ID,
