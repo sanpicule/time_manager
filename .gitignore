@@ -1,0 +1,15 @@
+# Sensitive credentials
+credentials.json
+
+# Node
+node_modules/
+client/node_modules/
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment files
+.env
+.env.*.local
